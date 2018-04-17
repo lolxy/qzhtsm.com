@@ -1,0 +1,155 @@
+<admintpl file="header"/>
+
+<style>
+
+h4.well{
+	margin-top:0px;
+	margin-bottom: 0;
+	border-radius:5px 5px 0px 0px;
+	border: none;
+	background: #eee;
+	}
+
+.home_info li{
+		border: 1px solid #eee;
+		height:40px;
+		line-height: 40px;
+		border-top: none;
+		padding-left: 10px;
+	}
+.home_info li:hover{
+	background: #f9f9f9;
+	}
+.home_info ul{
+	margin:0px;
+	margin-bottom: 20px;
+	}
+
+.home_info li em {
+
+float: left;
+
+width: 100px;
+
+font-style: normal;
+
+}
+
+li {
+
+list-style: none;
+
+}
+
+
+
+</style>
+
+</head>
+
+
+
+<body>
+
+<div class="wrap">
+
+  <div id="home_toptip"></div>
+
+  <h4 class="well">系统信息</h4>
+
+  <div class="home_info">
+
+    <ul>
+
+      <volist name="server_info" id="vo">
+
+        <li> <em>{$key}</em> <span>{$vo}</span> </li>
+
+      </volist>
+
+    </ul>
+
+  </div>
+
+  <h4 class="well">网站维护</h4>
+
+  <div class="home_info" id="home_devteam">
+
+    <ul>
+
+      <li> <em>前台网址：</em> <span><a href="http://www.qzhtsm.com">www.qzhtsm.com</a></span> </li>
+       <li> <em>后台网址：</em> <span><a href="http://www.qzhtsm.com/admin">www.qzhtsm.com/admin</a></span> </li>
+
+      <li> <em>网站维护：</em> <span><a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=604749526&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:604749526:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a></span> </li>
+
+      <li> <em>联系邮箱：</em> <span>604749526@qq.com</span> </li>
+      <li> <em>技术支持：</em> <span><a href="http://www.ftde360.com" target="_blank">方头大耳（www.ftde360.com）</a></span> </li>
+
+    </ul>
+
+  </div>
+
+  <h4 class="well">服务器信息</h4>
+
+  <div class="home_info" >
+
+    <ul>
+      <li>阿里云账号:qzhtsm@126.com</li>
+      <li>服务器IP：121.42.106.199</li>
+      <li>临时域名：qxu1152040046.my3w.com</li>	
+      <li>FTP登录主机地址：qxu1152040046.my3w.com</li>
+      <li>FTP登录用户名：qxu1152040046</li>
+      <li>数据库连接地址：qdm147674189.my3w.com</li>
+      <li>数据库名称：qdm147674189_db</li>
+      <li>数据库用户名：qdm147674189</li>
+      <li>服务器备案账号：qzhtsm@126.com</li>
+      <li>主机管理控制台用户名：qxu1152040046</li>
+    </ul>
+
+  </div>
+
+</div>
+
+<script src="__ROOT__/statics/js/common.js"></script> 
+
+<script>
+
+//获取官方通知
+
+$.getJSON("http://www.thinkcmf.com/service/sms_jsonp.php?callback=?",function(data){
+
+	var tpl='<li><em class="title"></em><span class="content"></span></li>';
+
+	var $thinkcmf_notices=$("#thinkcmf_notices");
+
+	$thinkcmf_notices.empty();
+
+	if(data.length>0){
+
+		$.each(data,function(i,n){
+
+			var $tpl=$(tpl);
+
+			$(".title",$tpl).html(n.title);
+
+			$(".content",$tpl).html(n.content);
+
+			$thinkcmf_notices.append($tpl);
+
+		});
+
+	}else{
+
+		$thinkcmf_notices.append("<li>^_^,没有通知~~</li>");
+
+	}
+
+	
+
+});
+
+</script>
+
+</body>
+
+</html>

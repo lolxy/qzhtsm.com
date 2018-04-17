@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<meta charset="utf-8">
+
+	<title>{$post_title} {$site_name} </title>
+
+	<meta name="keywords" content="{$post_keywords}" />
+
+	<meta name="description" content="{$post_excerpt}">
+
+    <tc_include file="Public:head" />
+
+    <script src="http://api.map.baidu.com/api?v=1.3"></script> 
+
+	<style>
+
+	img{
+
+	max-width: none;
+
+	}
+
+	</style>
+
+</head>
+
+<body class="body-white">
+
+<tc_include file="Public:nav" />
+
+
+
+<div class="section slice no-padding">
+
+        <div id="mapCanvas" class="map-canvas no-margin" style="height:400px;">
+
+        	<script type="text/javascript">
+
+			   var map = new BMap.Map("mapCanvas");            // 创建Map实例
+
+			var point = new BMap.Point("118.573392","24.979145");    // 创建点坐标
+
+			map.centerAndZoom(point,15);                // 初始化地图,设置中心点坐标和地图级别。
+
+			map.enableScrollWheelZoom();                  //启用滚轮放大缩小
+
+			//添加缩放控件
+
+			map.addControl(new BMap.NavigationControl());  
+
+			map.addControl(new BMap.ScaleControl());  
+
+			map.addControl(new BMap.OverviewMapControl()); 
+
+			
+
+			var marker = new BMap.Marker(point); // 创建标注 
+
+			map.addOverlay(marker); // 将标注添加到地图中
+
+			var infoWindow = new BMap.InfoWindow("泉州泓涂商贸有限公司<br/><span class=''>地址：福建省泉州市南安市丰州镇西华村动车站边</span>"); // 创建信息窗口对象
+
+			marker.openInfoWindow(infoWindow);
+
+			   </script>
+
+        </div>
+
+    </div>
+
+<div class="container tc-main">
+
+    <div class="row pg-opt">
+    
+    <h2>联系我们</h2>
+
+    <div class="col-xs-12 col-lg-6 messagebox">
+                     
+   <form class="" role="form" method="post" action="{:u('api/guestbook/addmsg')}">
+   <div class="col-xs-12">
+      <div class="form-group">
+          	 <label for="username" class="control-label">姓名</label>
+             <div class="input-group">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+            <input type="text" class="form-control" placeholder="请输入您的姓名" name="full_name" id="username">
+          </div>
+      </div>
+  </div>
+  
+  <div class="col-xs-12">
+      <div class="form-group">
+        <label for="email" class="control-label">邮箱</label>
+      <div class="input-group">
+        <span class="input-group-addon">@</span>
+        <input type="email" class="form-control" placeholder="请输入您的邮箱" name="email" id="email">
+      </div>
+      </div>
+  </div>
+  
+  <div class="col-xs-12">
+      <div class="form-group">
+            <label for="message" class="control-label">内容</label>
+                <textarea class="form-control" id="message" placeholder="在这儿填写留言内容" style="height:100px;" name="msg"></textarea>
+      </div>
+  </div>
+  
+  <div class="col-xs-12">
+		<div class="form-group">
+			<label for="verify">验证码</label>
+				<input type="text" id="verify" class="form-control" placeholder="请输入验证码"  name="verify" autocomplete="off">
+				<div style="margin:10px auto;text-align:right;">
+                {:sp_verifycode_img('code_len=4&font_size=20&width=238&height=34&font_color=&background=','style="cursor: pointer;vertical-align: top;" title="点击获取"')}
+                </div>
+		</div>
+ </div>
+  
+  <button type="submit" class="btn btn-primary">提交留言</button>
+</form>
+
+                    </div>
+
+                    <div class="col-xs-12 col-lg-6 contactsbox">
+
+                        	<div class="contact-cn">
+
+                                <h3 class="section-title">联系方式</h3>
+
+                                <div class="contact-info">
+
+                                    <h5>地址</h5>
+
+                                    <p>{$address}</p>
+
+                                    
+
+                                    <h5>邮箱</h5>
+
+                                    <p>{$site_admin_email}</p>
+
+                                    
+
+                                    <h5>电话</h5>
+
+                                    <p>{$tel}</p>
+
+                                </div>
+
+                            </div>
+
+                            <div class="contact-en">
+
+                                <h3 class="section-title">Contact</h3>
+
+                                <div class="contact-info">
+
+                                    <h5>Address</h5>
+
+                                    <p>{$address_en}</p>
+
+                                    
+
+                                    <h5>Email</h5>
+
+                                    <p>{$site_admin_email}</p>
+
+                                    
+
+                                    <h5>Phone</h5>
+
+                                    <p>{$tel}</p>
+
+                                </div>
+
+                            </div>
+
+						<div class="clearfix"></div>
+                        <div class="kjjl">
+                        <h3 class="section-title">快捷交流</h3>
+                        <p>
+
+                       点击以下QQ图标，免加好友即时洽谈合作
+
+                        </p>
+
+                        <div class="social-media">
+
+                            <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$oicq}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{$oicq}:51" alt="点击这里给我发消息" title="点击这里给我发消息"/></a>
+                        </div>
+                        
+                        </div>
+
+                    </div>
+
+                </div>
+
+  
+
+</div>
+
+
+ <tc_include file="Public:footer" />
+<tc_include file="Public:scripts" />
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+
+	<html>
+
+	<head>
+
+		<title>{$post_title} {$site_name} </title>
+
+		<meta name="keywords" content="{$post_keywords}" />
+
+		<meta name="description" content="{$post_excerpt}">
+
+		<tc_include file="Public:head" />
+
+		<style>
+
+			#article_content img{height:auto !important}
+
+		</style>
+
+	</head>
+
+<body class="">
+
+<tc_include file="Public:nav"/>
+
+<div class="container tc-main">
+
+	<div class="row">
+    
+    	<!--bof rightbox-->
+    
+    	<div class="col-xs-12 col-lg-9 rightbox">
+
+			<div class="breadcrumb-box">
+            	<ol class="breadcrumb">
+                  <li><a href="{$site_host}">首页</a></li>
+                  <li class="active">{$post_title}</li>
+                </ol>
+            </div>
+
+			<div class="tc-box article-box">
+
+		    	<h2>{$post_title}</h2>
+
+		    	<div id="article_content">
+
+		    	{$post_content}
+
+		    	</div>
+
+		    </div>
+
+		    
+
+		</div>
+        
+        <!--eof rightbox-->
+        <!--bof leftbox-->
+
+		<div class="col-xs-12 col-lg-3 leftbox">
+
+
+        	<div class="tc-box hot-news">
+
+	        	<div class="headtitle">
+
+	        		<h2>热门资讯</h2>
+
+	        	</div>
+
+	        	<div class="ranking">
+
+	        		<php>
+
+						$hot_articles=sp_sql_posts("cid:$htsm_index_lastnews;field:post_title,post_excerpt,tid,smeta;order:post_hits desc;limit:5;"); 
+
+					</php>
+
+		        	<ul class="unstyled">
+
+		        		<foreach name="hot_articles" item="vo">
+
+		        			<php>$top=$key<3?"top3":"";</php>
+
+							<li class="{$top}"><i>{$key+1}</i><a title="{$vo.post_title}" href="{:leuu('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></li>
+
+						</foreach>
+
+					</ul>
+
+				</div>
+
+			</div>
+            
+  
+            <div class="tc-box first-box">
+
+	          	<!--<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a></div>
+
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"32"},"share":{},"image":{"viewList":["weixin","tsina","qzone","tqq","renren"],"viewText":"分享到：","viewSize":"32"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["weixin","tsina","qzone","tqq","renren"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>-->
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone"></a><a href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq" data-cmd="tqq"></a><a href="#" class="bds_renren" data-cmd="renren"></a><a href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+        	</div>
+            
+            <!--联系我们-->
+        	<div class="tc-box ywbox">
+                <div class="list-group">
+                  <div class="headtitle">
+                      <h2>
+                            联系我们
+                      </h2>
+                  </div>
+                  <ul>
+                  <li class="list-group-item"><i class="fa fa-tty fa-sm"></i>联系电话：{$tel}</li>
+                  <li class="list-group-item"><i class="fa fa-qq fa-sm"></i>联系QQ：
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$oicq}&site=qq&menu=yes">
+						<img border="0" src="http://wpa.qq.com/pa?p=2:{$oicq}:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+					</a></li>
+                  <li class="list-group-item"><i class="fa fa-users fa-sm"></i>联系人：{$lianxiren}</li>
+                  <li class="list-group-item"><i class="fa fa-map-marker fa-sm"></i>联系地址：{$address}</li>
+                  </ul>
+                </div>
+            </div>
+        <!--联系我们结束-->
+
+		</div>
+		
+		<!-- eof leftbox -->
+		
+	</div>
+
+</div>
+
+<tc_include file="Public:footer"/>
+
+<tc_include file="Public:scripts"/>
+
+</body>
+
+</html>

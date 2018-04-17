@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+	<title>{$name} {$seo_title} {$site_name}</title>
+
+	<meta name="keywords" content="{$seo_keywords}" />
+
+	<meta name="description" content="{$seo_description}">
+
+    <tc_include file="Public:head" />
+    <script src="__TMPL__Public/js/jquery.js"></script>
+
+</head>
+
+<body>
+
+<tc_include file="Public:nav" />
+
+<div class="container tc-main">
+
+	<div class="row">
+        <div class="pg-opt pin">
+    
+            <h2>{$name}</h2>
+    
+        </div>
+    </div>
+
+    <div class="row">
+
+		<div class="col-lg-9 col-xs-12">
+
+			<div class="lists-box">
+
+				<php>
+
+					$lists = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",10);
+
+				</php>
+                
+                <if condition="!empty($lists['posts'])">
+
+				<volist name="lists['posts']" id="vo">
+
+				<php>
+
+					$smeta=json_decode($vo['smeta'], true);
+
+				</php>
+
+				
+
+				<div class="list-boxes">
+
+					<h2><a href="{:leuu('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></h2>
+
+					<p>{$vo.post_excerpt|msubstr=0,256}</p>
+
+					<div>
+
+						<div class="pull-left">
+
+							<div class="list-actions">
+
+							<a href="javascript:;">浏览量：&nbsp;<i class="fa fa-eye"></i>&nbsp;<span>{$vo.post_hits}</span></a>
+
+							</div>
+
+						</div>
+
+						<a class="btn btn-primary pull-right" href="{:leuu('article/index',array('id'=>$vo['tid']))}">查看更多</a>
+
+					</div>
+
+				</div>
+
+				</volist>
+				
+                <else/>
+                
+                <p style="height:30px;">暂无数据！谢谢关注！</p>
+                
+                </if>
+				
+
+			</div>
+
+			<if condition="!empty($lists['page'])">
+            <div class="pagination">
+
+				<ul>
+
+					{$lists['page']}
+
+				</ul>
+
+			</div>
+            </if>
+
+		</div>
+
+		<div class="col-lg-3 col-xs-12 left-box">  
+        
+        	<div class="tc-box ywbox">
+				<?php
+                 $term_id=17;
+                 $terms=sp_get_child_terms($term_id );
+                ?>
+                <div class="list-group">
+                  <div class="headtitle">
+                      <h2>
+                            泓涂业务
+                      </h2>
+                  </div>
+                  <foreach name="terms" item="vo">
+                  <a href="{:leuu('list/index',array('id'=>$vo['term_id']))}" class="list-group-item">{$vo.name}</a>
+                  </foreach>
+                </div>
+            </div>	
+
+        	<div class="tc-box hotsnewbox">
+
+	        	<div class="headtitle">
+
+	        		<h2>热门业务</h2>
+
+	        	</div>
+
+	        	<div class="ranking">
+
+	        		<php>
+						
+                        $cid=I('get.id');
+						$hot_articles=sp_sql_posts("cid:$cid;field:post_title,post_excerpt,tid,smeta;order:post_hits desc;limit:5;"); 
+
+					</php>
+
+		        	<ul class="unstyled">
+
+		        		<foreach name="hot_articles" item="vo">
+
+		        			<php>$top=$key<3?"top3":"";</php>
+
+							<li class="{$top}"><i>{$key+1}</i><a title="{$vo.post_title}" href="{:leuu('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></li>
+
+						</foreach>
+
+					</ul>
+
+				</div>
+
+			</div>
+            
+            <!--分享-->
+            	<div class="tc-box first-box">
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone"></a><a href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq" data-cmd="tqq"></a><a href="#" class="bds_renren" data-cmd="renren"></a><a href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+        	</div>
+            <!--分享结束-->
+            
+            <!--联系我们-->
+        	<div class="tc-box ywbox">
+                <div class="list-group">
+                  <div class="headtitle">
+                      <h2>
+                            联系我们
+                      </h2>
+                  </div>
+                  <ul>
+                  <li class="list-group-item"><i class="fa fa-tty fa-sm"></i>联系电话：{$tel}</li>
+                  <li class="list-group-item"><i class="fa fa-qq fa-sm"></i>联系QQ：
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$oicq}&site=qq&menu=yes">
+						<img border="0" src="http://wpa.qq.com/pa?p=2:{$oicq}:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+					</a></li>
+                  <li class="list-group-item"><i class="fa fa-users fa-sm"></i>联系人：{$lianxiren}</li>
+                  <li class="list-group-item"><i class="fa fa-map-marker fa-sm"></i>联系地址：{$address}</li>
+                  </ul>
+                </div>
+            </div>
+        <!--联系我们结束-->
+
+		</div>
+
+    </div>
+
+</div>
+
+
+<tc_include file="Public:footer" />
+    
+
+<!-- JavaScript -->
+
+<tc_include file="Public:scripts" />
+
+</body>
+
+</html>

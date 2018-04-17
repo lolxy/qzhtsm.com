@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+
+	<html>
+
+	<head>
+
+		<title>{$post_title} {$site_name} </title>
+
+		<meta name="keywords" content="{$post_keywords}" />
+
+		<meta name="description" content="{$post_excerpt}">
+
+		<tc_include file="Public:head" />
+
+		<style>
+
+			#article_content img{height:auto !important}
+
+			#article_content {word-wrap: break-word;}
+
+		</style>
+
+	</head>
+
+<body class="">
+
+<tc_include file="Public:nav" />
+
+<div class="container tc-main">
+
+	<div class="row">
+
+		<div class="col-xs-12 col-lg-9">
+
+			<div class="tc-box article-box articleBox">
+
+		    	<h2>{$post_title}</h2>
+
+		    	<div class="article-infobox">
+
+		    		<span>{$post_date} &nbsp;作者：{$user_nicename|default=$user_login} &nbsp;</span>
+
+		    		<span>
+
+		    			<a href="javascript:;"><i class="fa fa-eye" style="margin-right:5px;"></i><span>{$post_hits}</span></a>
+
+					</span>
+
+		    	</div>
+
+		    	<div id="article_content">
+
+		    	{$post_content}
+
+		    	</div>
+
+                <if condition="!empty($post_source)">
+
+                    <div class="beizhu">
+
+                        注：本文转载自{$post_source}，转载目的在于传递更多信息，并不代表本网赞同其观点和对其真实性负责。如有侵权行为，请联系我们，我们会及时删除。
+                    </div>
+
+    			</if>
+
+				<div>
+                	<if condition="!empty($prev) or !empty($next)">
+		    		<div class="prev-next">
+
+					<if condition="!empty($prev)">
+					
+                    <?php
+                    $tid=$prev['tid'];    //文章tid
+                    $prevposts=sp_sql_post($tid,'field:post_title;');
+                    ?>
+                    
+                    <div class="col-lg-6 col-xs-12 pull-left">
+						<a href="{:U('article/index',array('id'=>$prev['tid']))}" class="btn btn-primary pull-left">上一篇</a>
+						<span class="prevart">{$prevposts['post_title']}</span>
+					</div>
+                    
+                    </if>
+
+					<if condition="!empty($next)">
+					<?php
+                    $tid=$next['tid'];    //文章tid
+                    $nextposts=sp_sql_post($tid,'field:post_title;');
+                    ?>
+					
+                    <div class="col-lg-6 col-xs-12 pull-right">
+						<a href="{:U('article/index',array('id'=>$next['tid']))}" class="btn btn-warning pull-right">下一篇</a>
+                    	<span class="nextart">{$nextposts['post_title']}</span>
+					</div>
+                    
+					</if>
+                    </div>
+                    </if>
+
+					<div class="clearfix"></div>
+
+				</div>
+
+
+		    </div>
+
+
+		</div>
+
+		<div class="col-lg-3 col-xs-12 left-box mt10">  	
+
+        	<div class="tc-box hotsnewbox">
+
+	        	<div class="headtitle">
+
+	        		<h2>企业热点</h2>
+
+	        	</div>
+
+	        	<div class="ranking">
+
+	        		<php>
+
+						$hot_articles=sp_sql_posts("cid:$htsm_index_lastnews;field:post_title,post_excerpt,tid,smeta;order:post_hits desc;limit:5;"); 
+
+					</php>
+
+		        	<ul class="unstyled">
+
+		        		<foreach name="hot_articles" item="vo">
+
+		        			<php>$top=$key<3?"top3":"";</php>
+
+							<li class="{$top}"><i>{$key+1}</i><a title="{$vo.post_title}" href="{:leuu('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></li>
+
+						</foreach>
+
+					</ul>
+
+				</div>
+
+			</div>
+            
+            <!--分享-->
+            	<div class="tc-box first-box shapebox">
+<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone"></a><a href="#" class="bds_tsina" data-cmd="tsina"></a><a href="#" class="bds_tqq" data-cmd="tqq"></a><a href="#" class="bds_renren" data-cmd="renren"></a><a href="#" class="bds_weixin" data-cmd="weixin"></a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdPic":"","bdStyle":"0","bdSize":"16"},"share":{},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>
+        	</div>
+            <!--分享结束-->
+
+			<div class="tc-box" style="margin-bottom:0px;">
+
+	        	<div class="headtitle">
+
+	        		<h2>最新动态</h2>
+
+	        	</div>
+
+	        	<php>
+
+					$last_post=sp_sql_posts("cid:$htsm_last_post;field:post_title,post_excerpt,tid,smeta;order:listorder asc;limit:5;"); 
+
+				</php>
+
+	        	<div class="posts">
+
+	        		<foreach name="last_post" item="vo">
+
+	        		<php>$smeta=json_decode($vo['smeta'],true);</php>
+
+			        	<dl class="dl-horizontal">
+
+				            <dt>
+
+					            <a class="img-wraper" href="{:U('article/index',array('id'=>$vo['tid']))}">
+
+					            	<if condition="empty($smeta['thumb'])"> 
+
+										<img src="__TMPL__Public/images/default_tupian4.png" class="img-responsive" alt="{$vo.post_title}"/>
+
+									<else /> 
+
+										<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" class="img-responsive" alt="{$vo.post_title}" />
+
+									</if>
+
+					            </a>
+
+				            </dt>
+
+				            <dd><a href="{:leuu('article/index',array('id'=>$vo['tid']))}">{:msubstr($vo['post_excerpt'],0,32)}</a></dd>
+
+				        </dl>
+
+			        </foreach>
+
+		        </div>
+
+			</div>
+            
+            
+            <!--联系我们-->
+        	<div class="tc-box ywbox">
+                <div class="list-group">
+                  <div class="headtitle">
+                      <h2>
+                            联系我们
+                      </h2>
+                  </div>
+                  <ul>
+                  <li class="list-group-item"><i class="fa fa-tty fa-sm"></i>联系电话：{$tel}</li>
+                  <li class="list-group-item"><i class="fa fa-qq fa-sm"></i>联系QQ：
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$oicq}&site=qq&menu=yes">
+						<img border="0" src="http://wpa.qq.com/pa?p=2:{$oicq}:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+					</a></li>
+                  <li class="list-group-item"><i class="fa fa-users fa-sm"></i>联系人：{$lianxiren}</li>
+                  <li class="list-group-item"><i class="fa fa-map-marker fa-sm"></i>联系地址：{$address}</li>
+                  </ul>
+                </div>
+            </div>
+        <!--联系我们结束-->
+            
+            
+
+		</div>
+		
+
+	</div>
+
+              
+
+</div>
+
+
+<tc_include file="Public:footer"/>
+<tc_include file="Public:scripts"/>
+
+</body>
+
+</html>

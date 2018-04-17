@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+
+	<html>
+
+	<head>
+
+		<title>{$site_seo_title} {$site_name}</title>
+
+		<meta name="keywords" content="{$site_seo_keywords}" />
+
+		<meta name="description" content="{$site_seo_description}">
+
+		<tc_include file="Public:head" />
+
+        <tc_include file="Public:scripts"/>
+
+        <link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">        
+        <script src="__TMPL__Public/js/jquery.js"></script>
+    	<script src="__TMPL__Public/js/bootstrap.min.js"></script>
+        <script src="__TMPL__Public/js/swiper.jquery.min.js"></script>
+
+		<style>
+
+			.caption-wraper{position: absolute;left:50%;bottom:2em;}
+
+			.caption-wraper .caption{
+
+			position: relative;left:-50%;
+
+			background-color: rgba(0, 0, 0, 0.54);
+
+			padding: 0.4em 1em;
+
+			color:#fff;
+
+			-webkit-border-radius: 1.2em;
+
+			-moz-border-radius: 1.2em;
+
+			-ms-border-radius: 1.2em;
+
+			-o-border-radius: 1.2em;
+
+			border-radius: 1.2em;
+
+			}
+
+			@media (max-width: 767px){
+
+				.sy-box{margin: 12px -20px 0 -20px;}
+
+				.caption-wraper{left:0;bottom: 0.4em;}
+
+				.caption-wraper .caption{
+
+				left: 0;
+
+				padding: 0.2em 0.4em;
+
+				font-size: 0.92em;
+
+				-webkit-border-radius: 0;
+
+				-moz-border-radius: 0;
+
+				-ms-border-radius: 0;
+
+				-o-border-radius: 0;
+
+				border-radius: 0;}
+
+			}
+
+			
+
+			.swiper-container {
+
+				width: 100%;
+			
+				max-height: 500px;
+			
+			}  
+
+		</style>
+
+	</head>
+
+<body class="body-white">
+
+<tc_include file="Public:nav" />
+
+
+
+<php>
+
+$home_slides=sp_getslide("indexslide");
+
+$home_slides=empty($home_slides)?$default_home_slides:$home_slides;
+
+</php>
+
+
+
+<div class="swiper-container">
+
+    <div class="swiper-wrapper">
+
+        <foreach name="home_slides" item="vo">
+
+        <div class="swiper-slide">
+
+        	<a href="#" target="_blank"><img src="{:sp_get_asset_upload_path($vo['slide_pic'])}" class="img-responsive" alt=""/></a>
+
+        </div>
+
+        </foreach>
+
+    </div>
+
+    <!-- 如果需要分页器 -->
+
+    <div class="swiper-pagination"></div>
+
+</div>
+
+
+
+<script>        
+
+  var mySwiper = new Swiper ('.swiper-container', {
+
+    loop: true,
+
+	autoplay:3000,
+
+    
+
+    // 如果需要分页器
+
+    pagination: '.swiper-pagination',
+
+	paginationClickable :true,
+
+  })        
+
+  </script>
+
+
+
+<div class="container-fluid searchbox search visible-xs">
+
+    <form method="post" class="form-inline" action="{:U('htsm/search/index')}">
+
+        <input type="text" class="text" placeholder="请输入要搜索的关键字" name="keyword" value="{:I('get.keyword')}"/>
+
+        <input type="submit" class="btn btn-success btns" value="搜索"/>
+
+    </form>
+
+</div>
+
+
+
+<div class="container-fluid pro-tj">
+
+	<div class="container">
+
+	<h1><i class="fa fa-bars fa-lg"></i>旗下业务</h1>
+
+    <div class="row">
+
+      <div class="col-xs-12 col-lg-12">
+
+      	<div class="col-xs-6 col-lg-3">
+
+      		<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>5))}" target="_blank">
+
+                	<img alt="食品土特产" src="__TMPL__Public/images/tuijian/ttc.jpg" class="img-responsive">
+                    <div class="title">
+                    	食品土特产
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>食品土特产</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+      	</div>
+
+        <div class="col-xs-6 col-lg-3">
+
+      	<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>6))}" target="_blank">
+
+                	<img alt="水果专区" src="__TMPL__Public/images/tuijian/sg.jpg" class="img-responsive">
+					<div class="title">
+                    	水果专区
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>水果专区</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+      	</div>
+
+        <div class="col-xs-6 col-lg-3">
+
+      	<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>7))}" target="_blank">
+
+                	<img alt="玩具专区" src="__TMPL__Public/images/tuijian/wj.jpg" class="img-responsive">
+					<div class="title">
+                    	玩具专区
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>玩具专区</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+      	</div>
+
+        <div class="col-xs-6 col-lg-3">
+
+      	<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>8))}" target="_blank">
+
+                	<img alt="工艺品专区" src="__TMPL__Public/images/tuijian/gyp.jpg" class="img-responsive">
+					<div class="title">
+                    	工艺品专区
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>工艺品专区</h2>
+                        </div>
+                    </div>
+                </a>	
+
+            </div>
+
+      	</div>
+
+      </div>
+      
+      <div class="col-xs-12 col-lg-12">
+
+      	<div class="col-xs-6 col-lg-3">
+
+      		<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>9))}" target="_blank">
+
+                	<img alt="烟酒专区" src="__TMPL__Public/images/tuijian/yj.jpg" class="img-responsive">
+                	<div class="title">
+                    	烟酒专区
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>烟酒专区</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+      	</div>
+
+        <div class="col-xs-6 col-lg-3">
+
+      	<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>10))}" target="_blank">
+
+                	<img alt="药品专区" src="__TMPL__Public/images/tuijian/yp.jpg" class="img-responsive">
+					<div class="title">
+                    	药品专区
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>药品专区</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+      	</div>
+
+        <div class="col-xs-6 col-lg-3">
+
+      	<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>11))}" target="_blank">
+
+                	<img alt="服装专区" src="__TMPL__Public/images/tuijian/fz.jpg" class="img-responsive">
+					<div class="title">
+                    	服装专区
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>服装专区</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+      	</div>
+
+        <div class="col-xs-6 col-lg-3">
+
+      	<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>12))}" target="_blank">
+
+                	<img alt="鞋帽专区" src="__TMPL__Public/images/tuijian/xm.jpg" class="img-responsive">
+					<div class="title">
+                    	鞋帽专区
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>鞋帽专区</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+      	</div>
+
+      </div>
+
+
+       <div class="col-xs-12 col-lg-12">
+
+      	<div class="col-xs-6 col-lg-3">
+
+      		<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>13))}" target="_blank">
+
+                	<img alt="箱包专区" src="__TMPL__Public/images/tuijian/xb.jpg" class="img-responsive">
+					<div class="title">
+                    	箱包专区
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>箱包专区</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+      	</div>
+
+        <div class="col-xs-6 col-lg-3">
+
+      	<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>14))}" target="_blank">
+
+                	<img alt="皮具专区" src="__TMPL__Public/images/tuijian/pj.jpg" class="img-responsive">
+					<div class="title">
+                    	皮具专区
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>皮具专区</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+      	</div>
+
+        <div class="col-xs-6 col-lg-3">
+
+      	<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>18))}" target="_blank">
+
+                	<img alt="书店业务" src="__TMPL__Public/images/tuijian/sd.jpg" class="img-responsive">
+					<div class="title">
+                    	书店专区
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>书店专区</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+      	</div>
+
+        <div class="col-xs-6 col-lg-3">
+
+      	<div class="boxs">
+
+            	<a href="{:leuu('list/index',array('id'=>19))}" target="_blank">
+
+                	<img alt="咖啡厅业务" src="__TMPL__Public/images/tuijian/kft.jpg" class="img-responsive">
+					<div class="title">
+                    	咖啡厅专区
+                    </div>
+                    <div class="titbox hidden-xs">
+                    	<div class="tbg"></div>
+                        <div class="tit">
+                        	<h2>咖啡厅专区</h2>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+
+      	</div>
+
+      </div>
+
+    </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="container-fluid newsbox">
+
+	<div class="container">
+
+        <div class="row">
+        	 <div class="col-xs-12 col-lg-3">
+             	<div class="aboutus">
+                	<h1><i class="fa fa-laptop fa-lg"></i>关于我们/ABOUT US</h1>
+                    <div class="box">
+                    	<php>
+                            $ID=1;
+                            $page=sp_sql_page($ID);
+                            $aboutus=$page["post_content"];
+						</php>
+                        {:msubstr($aboutus,0,235)}
+                        <a href="{:leuu('page/index',array('id'=>1))}" target="_blank">[详细]</a>
+                    </div>
+                </div>
+                
+                <div class="contactus">
+                	<h1><i class="fa fa-phone-square fa-lg"></i>联系我们/CONTACT US</h1>
+                    <div class="box">
+                    	<p><i class="fa fa-tty fa-sm"></i>联系电话：{$tel}</p>
+                        <p><i class="fa fa-qq fa-sm"></i>联系QQ：
+                        <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$oicq}&site=qq&menu=yes">
+						<img border="0" src="http://wpa.qq.com/pa?p=2:{$oicq}:51" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+					</a>
+                    </p>
+                        <p><i class="fa fa-users fa-sm"></i>联系人：{$lianxiren}</p>
+                        <p><i class="fa fa-map-marker fa-sm"></i>联系地址：{$address}</p>
+                    </div>
+                </div>
+             </div>
+
+          <div class="col-xs-12 col-lg-5">
+          
+          <h1><i class="fa fa-bookmark fa-lg"></i>新闻中心/NEWS</h1>
+          <div class="box">
+
+          <php>
+
+		$lastnews=sp_sql_posts("cid:$htsm_index_lastnews;field:post_title,post_excerpt,tid,smeta;order:listorder asc;limit:1;"); 
+
+	</php>
+
+          <foreach name="lastnews" item="vo">
+
+		<php>$smeta=json_decode($vo['smeta'],true);</php>
+
+            	<div class="hots-new">
+
+                	<div class="imgbox col-lg-5 col-md-5">
+
+                		<a href="{:leuu('article/index',array('id'=>$vo['tid']))}">
+
+							<if condition="empty($smeta['thumb'])"> 
+
+								<img src="__TMPL__Public/images/default_tupian1.png" class="img-responsive img-thumbnail" alt="{$vo.post_title}"/>
+
+							<else /> 
+
+								<img src="{:sp_get_asset_upload_path($smeta['thumb'])}" class="img-responsive img-thumbnail" alt="{$vo.post_title}" />
+
+							</if>
+
+                		</a>
+
+                    </div>
+
+                    <div class="txtbox col-lg-7 col-md-7">
+
+                    	<h2><a href="{:leuu('article/index',array('id'=>$vo['tid']))}">{$vo.post_title}</a></h2>
+
+                        <p class="pbox"><a href="{:leuu('article/index',array('id'=>$vo['tid']))}">{:msubstr($vo['post_excerpt'],0,50)}</a></p>
+
+                        <p><a href="{:leuu('article/index',array('id'=>$vo['tid']))}" target="_blank" class="more">查看详情</a></p>
+
+                    </div>
+
+                </div>
+
+                </foreach>
+
+                <div class="clearfix"></div>
+
+                <div class="newlist">
+
+                <php>
+
+		$newslist=sp_sql_posts("cid:$htsm_index_lastnews;field:post_title,post_excerpt,tid,smeta,post_modified;order:listorder asc;limit:1,5;"); 
+
+	</php>
+
+                	<ul class="list-unstyled">
+
+                    <foreach name="newslist" item="vo">
+
+                    	<li>
+
+                        	<a href="{:leuu('article/index',array('id'=>$vo['tid']))}" target="_blank"><p>{$vo.post_title}</p><span class="hidden-xs">{$vo.post_modified}</span></a>
+
+                        </li>
+
+                        </foreach>
+
+                    </ul>
+
+                    <div class="more">
+
+                       <a href="#" target="_blank">查看更多 >></a>
+
+                    </div>
+
+                </div>
+                </div>
+         </div>
+
+          
+
+           <div class="col-xs-12 col-lg-4 pull-right">
+           		
+                <h1><i class="fa fa-square fa-lg"></i>泓涂服务/SERVICE</h1>
+
+           		<php>
+
+               		 $newsad=sp_getslide("newsad");
+
+                </php>
+				<div class="box clearfix">
+				<foreach name="newsad" item="vo">
+
+            	<div class="ads col-lg-12 col-xs-6">
+
+                <a href="{$vo['slide_url']}" target="_blank">
+
+                	<img alt="" src="{:sp_get_asset_upload_path($vo['slide_pic'])}" class="img-responsive">
+
+                </a>
+
+                </div>
+
+                </foreach>
+               </div>
+
+            </div>
+
+        </div>
+
+	</div>
+
+</div>
+
+<tc_include file="Public:footer"/>
+<tc_include file="Public:scripts"/>
+</body>
+
+</html>
+

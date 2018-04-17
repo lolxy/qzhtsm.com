@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<dwsync>
+<file name="BorisBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571937150250" remote="130861117200000000" Dst="0" />
+<file name="AgentCheckBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571937181409" remote="130861117200000000" Dst="0" />
+<file name="BrowserCheckBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571938112024" remote="130861117200000000" Dst="0" />
+<file name="BuildLiteBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571939363902" remote="130861117200000000" Dst="0" />
+<file name="CheckActionRouteBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571940345936" remote="130861117800000000" Dst="0" />
+<file name="CheckLangBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571940838661" remote="130861117800000000" Dst="0" />
+<file name="ChromeShowPageTraceBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571942367625" remote="130861117800000000" Dst="0" />
+<file name="ContentReplaceBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571943599605" remote="130861117800000000" Dst="0" />
+<file name="CronRunBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571943661135" remote="130861117800000000" Dst="0" />
+<file name="ParseTemplateBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571946484865" remote="130861117800000000" Dst="0" />
+<file name="ReadHtmlCacheBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571946534876" remote="130861117800000000" Dst="0" />
+<file name="FireShowPageTraceBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571948081957" remote="130861117800000000" Dst="0" />
+<file name="RobotCheckBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571948780841" remote="130861117800000000" Dst="0" />
+<file name="ShowPageTraceBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571949746889" remote="130861117800000000" Dst="0" />
+<file name="ShowRuntimeBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571950557896" remote="130861117800000000" Dst="0" />
+<file name="TokenBuildBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571951405486" remote="130861117800000000" Dst="0" />
+<file name="UpgradeNoticeBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571952935312" remote="130861117800000000" Dst="0" />
+<file name="WriteHtmlCacheBehavior.class.php" server="qxu1152040046.my3w.com//htdocs/" local="130863571952965318" remote="130861117800000000" Dst="0" />
+</dwsync>
